@@ -1,18 +1,15 @@
-const apiCountries = "https://restcountries.eu/rest/v2/all";
-const loader = document.querySelector('.load');
-const countriesSection = document.querySelector('.countries');
-
-console.log(countriesSection);
+const apiCountries = "https://restcountries.eu/rest/v2/all",
+  input = document.querySelector('.inputs__countrie'),
+  loader = document.querySelector('.load'),
+  countriesSection = document.querySelector('.countries');
 
 getCountries(apiCountries);
 
- async function getCountries(url) {
+async function getCountries(url) {
   const response = await fetch(url);
-  const countries = await response.json();
-console.log(countries);
-  showCountries(countries); 
+  const countries = await response.json()
+  showCountries(countries);
 }
-
 
 const showCountries = (countries) => {
   loader.style.display = 'none';
@@ -42,8 +39,24 @@ const showCountries = (countries) => {
                 </p>
             </div>
         `;
-        countriesSection.appendChild(countryCard); 
-    
+    countriesSection.appendChild(countryCard);
+
   });
 };
+
+input.addEventListener('change', searchCountry);
+
+function searchCountry() {
+  const country = input.value.toLowerCase();
+  const countries = document.querySelectorAll('.country-name');
+  console.log(country);
+
+  countries.forEach((item) => {
+    if (item.innerText.toLowerCase() === country){      
+     return item.parentElement.parentElement.style.display = 'block';
+    } else {
+      return item.parentElement.parentElement.style.display = 'none';
+    }
+  });
+}
 
