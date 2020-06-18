@@ -73,6 +73,13 @@ select {
   margin-bottom: 40px;
 }
 
+.card:hover {
+  width: 278px;
+  cursor: pointer;
+  border: 1px solid black;
+  margin-bottom: 38px;
+}
+
 .card img {
   border-radius: 4px 4px 0 0;
   width: 280px;

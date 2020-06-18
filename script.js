@@ -15,7 +15,7 @@ function filterRegion(e) {
   const countryRegion = document.querySelectorAll('.country-region');
   console.log(item.value);
 
-  countryRegion.forEach((region) => {    
+  countryRegion.forEach((region) => {
     if (region.innerHTML.toLowerCase().includes(item.value)) {
       return region.parentElement.parentElement.style.display = 'block';
     } else {
