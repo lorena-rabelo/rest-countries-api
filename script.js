@@ -1,9 +1,28 @@
 const apiCountries = "https://restcountries.eu/rest/v2/all",
   input = document.querySelector('.inputs__countrie'),
   loader = document.querySelector('.load'),
-  countriesSection = document.querySelector('.countries');
+  option = document.querySelectorAll('option'),
+  select = document.querySelector('select')
+countriesSection = document.querySelector('.countries');
 
+
+input.addEventListener('change', searchCountry);
+select.addEventListener('change', filterRegion)
 getCountries(apiCountries);
+
+function filterRegion(e) {
+  const item = e.target;
+  const countryRegion = document.querySelectorAll('.country-region');
+  console.log(item.value);
+
+  countryRegion.forEach((region) => {    
+    if (region.innerHTML.toLowerCase().includes(item.value)) {
+      return region.parentElement.parentElement.style.display = 'block';
+    } else {
+      return region.parentElement.parentElement.style.display = 'none';
+    }
+  })
+}
 
 async function getCountries(url) {
   const response = await fetch(url);
@@ -44,16 +63,14 @@ const showCountries = (countries) => {
   });
 };
 
-input.addEventListener('change', searchCountry);
-
 function searchCountry() {
   const country = input.value.toLowerCase();
   const countries = document.querySelectorAll('.country-name');
   console.log(country);
 
   countries.forEach((item) => {
-    if (item.innerText.toLowerCase() === country){      
-     return item.parentElement.parentElement.style.display = 'block';
+    if (item.innerText.toLowerCase() === country) {
+      return item.parentElement.parentElement.style.display = 'block';
     } else {
       return item.parentElement.parentElement.style.display = 'none';
     }
