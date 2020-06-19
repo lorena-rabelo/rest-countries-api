@@ -3,7 +3,9 @@ const apiCountries = "https://restcountries.eu/rest/v2/all",
   loader = document.querySelector('.load'),
   option = document.querySelectorAll('option'),
   select = document.querySelector('select')
-card = document.querySelector('.card'),
+  card = document.querySelector('.card'),
+  base = document.html,
+  changeColorMode = document.querySelector('.color_mode'),
   countriesSection = document.querySelector('.countries');
 
 console.log(card)
@@ -11,6 +13,13 @@ console.log(card)
 input.addEventListener('change', searchCountry);
 select.addEventListener('change', filterRegion)
 getCountries(apiCountries);
+
+changeColorMode.addEventListener('click', () => {
+console.log('testado');
+document.body.classList.toggle('dark');
+
+});
+
 
 function filterRegion(e) {
   const item = e.target;
@@ -39,6 +48,7 @@ const showCountries = (countries) => {
   countries.forEach(country => {
     const countryCard = document.createElement('div');
     countryCard.classList.add('card');
+    countryCard.classList.add('dark');
 
     countryCard.innerHTML = `
             <div>
