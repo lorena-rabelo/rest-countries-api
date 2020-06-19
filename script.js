@@ -3,8 +3,10 @@ const apiCountries = "https://restcountries.eu/rest/v2/all",
   loader = document.querySelector('.load'),
   option = document.querySelectorAll('option'),
   select = document.querySelector('select')
-countriesSection = document.querySelector('.countries');
+card = document.querySelector('.card'),
+  countriesSection = document.querySelector('.countries');
 
+console.log(card)
 
 input.addEventListener('change', searchCountry);
 select.addEventListener('change', filterRegion)
@@ -60,6 +62,56 @@ const showCountries = (countries) => {
         `;
     countriesSection.appendChild(countryCard);
 
+    countryCard.addEventListener('click', () => {
+      console.log(this)
+      countriesSection.innerHTML = ''
+      const detailCountry = document.createElement('div')
+      detailCountry.classList.add('detail')
+      countriesSection.appendChild(detailCountry);
+
+      console.log(country.name.toLowerCase())
+      detailCountry.innerHTML = ` 
+        <div>
+          <img src="${country.flag}" alt="${country.name}" />
+        </div>
+        <div class="infos">
+          <h3 class="country-name">${country.name}</h3>
+          <p class="country-native-name">
+              <strong>Native Name:</strong>
+               ${country.nativeName}
+          </p>
+          <p>
+            <strong>Population:</strong>
+             ${country.population}
+          </p>
+          <p class="country-region">
+            <strong>Region:</strong>
+            ${country.region}
+          </p>
+          <p class="country-subregion">
+             <strong>Sub Region:</strong>
+             ${country.subregion}  
+          </p>
+          <p>
+             <strong>Capital:</strong>
+            ${country.capital}
+          </p>
+             <p class="country-subregion">
+             <strong>Top Level Domain:</strong>
+            ${country.topLevelDomain[0]}
+          </p>
+        <p class="country-subregion">
+            <strong>Currencies:</strong>
+            ${country.currencies.map((currency) => currency.code)}  
+        </p>
+            <p class="country-subregion">
+           <strong>Languages:</strong>
+           ${country.languages.map((language) => language.name)}
+          </p>
+        </div> 
+       `
+
+    })
   });
 };
 
@@ -76,4 +128,3 @@ function searchCountry() {
     }
   });
 }
-

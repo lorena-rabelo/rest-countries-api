@@ -94,3 +94,20 @@ select {
 img {
   width: 100%;
 }
+
+.detail {
+  max-width: 1040px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.detail img {
+  width: 560px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.infos {
+  margin-left: 100px;
+}
