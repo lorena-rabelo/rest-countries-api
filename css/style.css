@@ -15,6 +15,7 @@ a {
 :root {
   --background-el: #ffffff;
   --body: #fafafa;
+  --hover: #000;
 }
 
 body {
@@ -28,6 +29,7 @@ body.dark {
   color: #ffffff;
   --body: #202c37;
   --background-el: #2b3945;
+  --hover: #fff;
 }
 
 .color_mode {
@@ -42,10 +44,6 @@ body.dark .btn-toggle .fas {
 }
 
 body.dark .btn-toggle .far {
-  display: none;
-}
-
-.far {
   display: none;
 }
 
@@ -73,16 +71,35 @@ header {
 }
 
 input {
-  height: 40px;
+  height: 50px;
   padding: 0 200px 0 15px;
-  border: 4px;
+  border: 0;
+  border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
   background-color: var(--background-el);
+  font-size: 16px;
 }
 
 select {
-  height: 40px;
+  height: 50px;
   background-color: var(--background-el);
+  border: 0;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 16px;
+  box-shadow: 0 1px 3px #0000000f, 0 1px 2px #0000001f;
+}
+
+.buttonBack {
+  background-color: var(--background-el);
+  box-shadow: 0 1px 3px #0000000f, 0 1px 2px #0000001f;
+  height: 40px;
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .countries {
@@ -167,7 +184,7 @@ select {
 .card:hover {
   width: 279px;
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid var(--hover);
   margin-bottom: 38px;
 }
 
@@ -190,7 +207,7 @@ img {
   max-width: 1040px;
   display: flex;
   align-content: center;
-  align-items: center;
+  margin: 50px auto;
 }
 
 .detail img {

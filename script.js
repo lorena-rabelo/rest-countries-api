@@ -6,18 +6,24 @@ const apiCountries = "https://restcountries.eu/rest/v2/all",
   card = document.querySelector('.card'),
   base = document.html,
   changeColorMode = document.querySelector('.color_mode'),
+  textColorMode = document.querySelector('h4'),
+  inputSection = document.querySelector('.inputs'),
   countriesSection = document.querySelector('.countries');
 
-console.log(card)
+console.log(textColorMode)
 
 input.addEventListener('change', searchCountry);
 select.addEventListener('change', filterRegion)
 getCountries(apiCountries);
 
 changeColorMode.addEventListener('click', () => {
-console.log('testado');
-document.body.classList.toggle('dark');
-
+  // console.log('testado');
+  document.body.classList.toggle('dark');
+  if (textColorMode.innerText === 'Dark Mode') {
+    textColorMode.innerText = 'Light Mode';
+  } else {
+    textColorMode.innerText = 'Dark Mode';
+  }
 });
 
 
@@ -48,7 +54,7 @@ const showCountries = (countries) => {
   countries.forEach(country => {
     const countryCard = document.createElement('div');
     countryCard.classList.add('card');
-    countryCard.classList.add('dark');
+    // countryCard.classList.add('dark');
 
     countryCard.innerHTML = `
             <div>
@@ -73,11 +79,17 @@ const showCountries = (countries) => {
     countriesSection.appendChild(countryCard);
 
     countryCard.addEventListener('click', () => {
-      console.log(this)
+      select.style.display = "none"
+      input.style.display = "none"
       countriesSection.innerHTML = ''
+      const buttonBack = document.createElement('a')
       const detailCountry = document.createElement('div')
+      buttonBack.innerHTML = `<i class="fas fa-arrow-left"></i><h5>Back</h5>`
+      buttonBack.href = "https://countries-api-lorena.netlify.app/"          
+      buttonBack.classList.add('buttonBack')
       detailCountry.classList.add('detail')
       countriesSection.appendChild(detailCountry);
+      inputSection.appendChild(buttonBack);
 
       console.log(country.name.toLowerCase())
       detailCountry.innerHTML = ` 
