@@ -8,9 +8,8 @@ const apiCountries = "https://restcountries.eu/rest/v2/all",
   changeColorMode = document.querySelector('.color_mode'),
   textColorMode = document.querySelector('h4'),
   inputSection = document.querySelector('.inputs'),
+  errorMensagem = document.querySelector('.noResult'),
   countriesSection = document.querySelector('.countries');
-
-console.log(textColorMode)
 
 input.addEventListener('change', searchCountry);
 select.addEventListener('change', filterRegion)
@@ -25,7 +24,6 @@ changeColorMode.addEventListener('click', () => {
     textColorMode.innerText = 'Dark Mode';
   }
 });
-
 
 function filterRegion(e) {
   const item = e.target;
@@ -49,7 +47,7 @@ async function getCountries(url) {
 
 const showCountries = (countries) => {
   loader.style.display = 'none';
-  countriesSection.innerHTML = '';
+  errorMensagem.style.display = 'none';
 
   countries.forEach(country => {
     const countryCard = document.createElement('div');
@@ -85,13 +83,12 @@ const showCountries = (countries) => {
       const buttonBack = document.createElement('a')
       const detailCountry = document.createElement('div')
       buttonBack.innerHTML = `<i class="fas fa-arrow-left"></i><h5>Back</h5>`
-      buttonBack.href = "https://countries-api-lorena.netlify.app/"          
+      buttonBack.href = "https://countries-api-lorena.netlify.app/"
       buttonBack.classList.add('buttonBack')
       detailCountry.classList.add('detail')
       countriesSection.appendChild(detailCountry);
       inputSection.appendChild(buttonBack);
 
-      console.log(country.name.toLowerCase())
       detailCountry.innerHTML = ` 
         <div>
           <img src="${country.flag}" alt="${country.name}" />
@@ -132,20 +129,20 @@ const showCountries = (countries) => {
           </p>
         </div> 
        `
-
     })
   });
 };
 
+
 function searchCountry() {
   const country = input.value.toLowerCase();
   const countries = document.querySelectorAll('.country-name');
-  console.log(country);
-
+  console.log(errorMensagem)
   countries.forEach((item) => {
     if (item.innerText.toLowerCase() === country) {
       return item.parentElement.parentElement.style.display = 'block';
     } else {
+      errorMensagem.style.display = 'block';
       return item.parentElement.parentElement.style.display = 'none';
     }
   });
