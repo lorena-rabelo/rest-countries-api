@@ -52,8 +52,6 @@ const showCountries = (countries) => {
   countries.forEach(country => {
     const countryCard = document.createElement('div');
     countryCard.classList.add('card');
-    // countryCard.classList.add('dark');
-
     countryCard.innerHTML = `
             <div>
                 <img src="${country.flag}" alt="${country.name}" />
@@ -77,73 +75,82 @@ const showCountries = (countries) => {
     countriesSection.appendChild(countryCard);
 
     countryCard.addEventListener('click', () => {
-      select.style.display = "none"
-      input.style.display = "none"
-      countriesSection.innerHTML = ''
-      const buttonBack = document.createElement('a')
-      const detailCountry = document.createElement('div')
-      buttonBack.innerHTML = `<i class="fas fa-arrow-left"></i><h5>Back</h5>`
-      buttonBack.href = "https://countries-api-lorena.netlify.app/"
-      buttonBack.classList.add('buttonBack')
-      detailCountry.classList.add('detail')
-      countriesSection.appendChild(detailCountry);
-      inputSection.appendChild(buttonBack);
 
-      detailCountry.innerHTML = ` 
-        <div>
-          <img src="${country.flag}" alt="${country.name}" />
-        </div>
-        <div class="infos">
-          <h3 class="country-name">${country.name}</h3>
-          <p class="country-native-name">
-              <strong>Native Name:</strong>
-               ${country.nativeName}
-          </p>
-          <p>
-            <strong>Population:</strong>
-             ${country.population}
-          </p>
-          <p class="country-region">
-            <strong>Region:</strong>
-            ${country.region}
-          </p>
-          <p class="country-subregion">
-             <strong>Sub Region:</strong>
-             ${country.subregion}  
-          </p>
-          <p>
-             <strong>Capital:</strong>
-            ${country.capital}
-          </p>
-             <p class="country-subregion">
-             <strong>Top Level Domain:</strong>
-            ${country.topLevelDomain[0]}
-          </p>
-        <p class="country-subregion">
-            <strong>Currencies:</strong>
-            ${country.currencies.map((currency) => currency.code)}  
-        </p>
-            <p class="country-subregion">
-           <strong>Languages:</strong>
-           ${country.languages.map((language) => language.name)}
-          </p>
-        </div> 
-       `
-    })
+      showCountryDetails(country);
+    });
   });
 };
 
+const showCountryDetails = (country) => {
+  select.style.display = "none"
+  input.style.display = "none"
+  countriesSection.innerHTML = ''
+  const buttonBack = document.createElement('a')
+  const detailCountry = document.createElement('div')
+  buttonBack.innerHTML = `<i class="fas fa-arrow-left"></i><h5>Back</h5>`
+  buttonBack.href = "https://countries-api-lorena.netlify.app/"
+  buttonBack.classList.add('buttonBack')
+  detailCountry.classList.add('detail')
+  countriesSection.appendChild(detailCountry);
+  inputSection.appendChild(buttonBack);
+
+  detailCountry.innerHTML = ` 
+    <div>
+      <img src="${country.flag}" alt="${country.name}" />
+    </div>
+    <div class="infos">
+      <h3 class="country-name">${country.name}</h3>
+      <p class="country-native-name">
+          <strong>Native Name:</strong>
+           ${country.nativeName}
+      </p>
+      <p>
+        <strong>Population:</strong>
+         ${country.population}
+      </p>
+      <p class="country-region">
+        <strong>Region:</strong>
+        ${country.region}
+      </p>
+      <p class="country-subregion">
+         <strong>Sub Region:</strong>
+         ${country.subregion}  
+      </p>
+      <p>
+         <strong>Capital:</strong>
+        ${country.capital}
+      </p>
+         <p class="country-subregion">
+         <strong>Top Level Domain:</strong>
+        ${country.topLevelDomain[0]}
+      </p>
+    <p class="country-subregion">
+        <strong>Currencies:</strong>
+        ${country.currencies.map((currency) => currency.code)}  
+    </p>
+        <p class="country-subregion">
+       <strong>Languages:</strong>
+       ${country.languages.map((language) => language.name)}
+      </p>
+    </div> 
+   `
+}
 
 function searchCountry() {
-  const country = input.value.toLowerCase();
+  const typedValue = input.value.toLowerCase();
   const countries = document.querySelectorAll('.country-name');
   console.log(errorMensagem)
-  countries.forEach((item) => {
-    if (item.innerText.toLowerCase() === country) {
-      return item.parentElement.parentElement.style.display = 'block';
-    } else {
-      errorMensagem.style.display = 'block';
-      return item.parentElement.parentElement.style.display = 'none';
-    }
-  });
+
+
+  countries.forEach((country) => {    
+    if (country.innerText.toLowerCase().includes(typedValue)) {
+      // countriesSection.innerHTML = "";
+      errorMensagem.style.display = 'none';
+      country.parentElement.parentElement.style.display = 'block';
+      } else if (!country.innerText.toLowerCase().includes(typedValue)){
+      errorMensagem.style.display = 'flex';
+      country.parentElement.parentElement.style.display = 'none';
+    }    
+  })
+
 }
