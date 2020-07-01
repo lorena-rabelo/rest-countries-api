@@ -141,16 +141,25 @@ function searchCountry() {
   const countries = document.querySelectorAll('.country-name');
   console.log(errorMensagem)
 
+  
 
-  countries.forEach((country) => {    
+  countries.forEach((country) => {   
+    errorMensagem.style.display = 'none'; 
     if (country.innerText.toLowerCase().includes(typedValue)) {
       // countriesSection.innerHTML = "";
       errorMensagem.style.display = 'none';
       country.parentElement.parentElement.style.display = 'block';
+      return
       } else if (!country.innerText.toLowerCase().includes(typedValue)){
-      errorMensagem.style.display = 'flex';
+      // errorMensagem.style.display = 'flex';
       country.parentElement.parentElement.style.display = 'none';
-    }    
+      return
+      }
+   
   })
+
+ 
+
+ 
 
 }
