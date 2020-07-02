@@ -1,9 +1,8 @@
-# Frontend Mentor - REST Countries API with color theme switcher
+# Frontend Mentor - REST Countries API with color theme switcher (HTML, CSS and Javascript Vanilla)
 
 ![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
 
 ## Welcome! 👋
-
 
 ## The challenge
 
@@ -19,3 +18,4 @@ The users are able to:
 - Toggle the color scheme between light and dark mode 
 
 
+See the live project here
