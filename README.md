@@ -18,4 +18,4 @@ The users are able to:
 - Toggle the color scheme between light and dark mode 
 
 
-See the live project here
+## See the live project [here](https://countries-api-lorena.netlify.app/)
